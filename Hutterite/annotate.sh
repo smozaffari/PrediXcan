@@ -11,7 +11,7 @@ export TMPDIR=$WORKDIR
 cd $PBS_O_WORKDIR
 export TEMP=$WORKDIR
 
-perl /group/ober-resources/users/smozaffari/Prediction/data/test/scripts/annotate.sh chr1.bim
+perl /group/ober-resources/users/smozaffari/Prediction/data/test/scripts/annotate.sh qc.bim
 
 
 
