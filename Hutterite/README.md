@@ -4,7 +4,7 @@ files taken from :
 
 extracting SNPs that have rsIDs — determined from:`qc.bim` after annotated with annotation file
 
-`grep rs annotated_qc.bim > rs_qc.bim`
+    grep rs annotated_qc.bim > rs_qc.bim
     
 also extract hapmapSNPs used, given in PrediXcan source: `hapmapSnpsCEU.list`
 
