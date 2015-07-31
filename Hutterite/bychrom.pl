@@ -29,7 +29,7 @@ close(BIM);
 foreach my $str ( sort keys %count) {
     my $a = $start{$str};
     my $b = $stop{$str};
-    my $cmd = ('cut -f'.$a.'-'.$b.' -d" " NAfilledin.ped > chr'.$str.'.ped \n');
+    my $cmd = ('cut -f'.$a.'-'.$b.' -d" " NAfilledin_recode_all.ped > chr'.$str.'.ped \n');
 #    my $cmd = ('cut -f'.$a.'-'.$b.' -d" " qcfiles_rsids_hapmapSNPs.ped > chr'.$str.'.ped \n');
 #    print ($cmd);
 #    print ("\n");
