@@ -3,10 +3,8 @@ x <- args[1];
 print(paste("Input: Chromosome", x, sep = " "))
 print("Reading bim")
 bim <- read.table(paste("/group/ober-resources/users/smozaffari/Prediction/data/test/bychromosome/chr",x ,".SNPinfo.txt", sep = ""))
-dim(bim)
 print("Reading IDxSNP")
 IDxSNP <- read.table(paste("/group/ober-resources/users/smozaffari/Prediction/data/test/bychromosome/chr", x,".ped", sep=""))
-dim(IDxSNP)
 
 print ("tranposing matrix")
 SNPxID <- t(IDxSNP)
@@ -35,7 +33,7 @@ print("Writing Files")
 
 write.table(tab, paste("HUTT_chr", x, ".dos", sep = ""), row.names = F, col.names = F, quote = F);
 
-write.table(ID, paste("HUTTsamples_chr",x ,".txt", sep = ""), col.names = F, row.names = F, quote = F)
+#write.table(ID, "HUTTsamples.txt", col.names = F, row.names = F, quote = F)
 print("Gunzipping files")
 system(paste("gzip HUTT_chr", x,".dos", sep = ""))
 

@@ -13,8 +13,10 @@ export TEMP=$WORKDIR
 
 module load R
 
-    Rscript /group/ober-resources/users/smozaffari/Prediction/data/test/PrediXcan/Hutterite/makedosagefiles.R 1
-
-
+for i in {2..8}
+do
+    Rscript /group/ober-resources/users/smozaffari/Prediction/data/test/PrediXcan/Hutterite/makedosagefiles.R $i
+wait
+done
 
 
