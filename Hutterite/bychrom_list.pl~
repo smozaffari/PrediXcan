@@ -19,19 +19,18 @@ $stop{0} = 6;
 
 foreach my $str ( sort {$a <=> $b} keys %count) {
     $start{$str} = $stop{$str-1}+1;
-    $stop{$str} = ($count{$str})+ $start{$str}-1;
+    $stop{$str} = $count{$str}+ $start{$str};
     print "$str $count{$str}   $start{$str}-$stop{$str}\n";
 }
 close(BIM);
 
-#open (PED, "/group/ober-resources/users/smozaffari/Prediction/data/test/qcfiles_rsids_hapmapSNPs.ped") || die "nope: $!";
-#foreach my $str ( sort {$a <=> $b} keys %count)  {
 foreach my $str ( sort keys %count) {
     my $a = $start{$str};
     my $b = $stop{$str};
-    my $cmd = ('cut -f'.$a.'-'.$b.' -d" " NAfilledin.ped > chr'.$str.'.ped \n');
-#    my $cmd = ('cut -f'.$a.'-'.$b.' -d" " qcfiles_rsids_hapmapSNPs.ped > chr'.$str.'.ped \n');
-#    print ($cmd);
-#    print ("\n");
+    my $head = ($count{$str} + $stop{$str-1} - 5);
+#    my $cmd = ('head -'.$head.' SNPlist_hapmap_rsids.txt | tail -'.$count{$str}.' > chr'.$str.'.SNPlist.txt');
+    my $cmd = ('head -'.$head.' correctgeno | tail -'.$count{$str}.' > chr'.$str.'.SNPinfo.txt');    
+    print ($cmd);
+    print ("\n");
     system($cmd);
 }

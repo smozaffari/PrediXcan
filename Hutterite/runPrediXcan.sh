@@ -15,6 +15,6 @@ module load R
 module load python
 
 
-python /group/ober-resources/users/smozaffari/Prediction/data/test/PrediXcan/Software/predict_gene_expression.py --dosages dosagefiles --dosages_prefix HUTT_chr --weights /group/ober-resources/users/smozaffari/Prediction/data/test/DGN-WB_0.5.db  --output DGN_WB_Hutterites
+python /group/ober-resources/users/smozaffari/Prediction/data/test/PrediXcan/Software/predict_gene_expression.py --dosages dosagefiles --dosages_prefix HUTT_chr --weights /group/ober-resources/users/smozaffari/Prediction/data/test/Cells-EBV-transformedlymphocytes_0.5.db  --output GTEx_LCL_Hutterites
 
 

@@ -11,6 +11,5 @@ export TMPDIR=$WORKDIR
 cd $PBS_O_WORKDIR
 export TEMP=$WORKDIR
 
-perl /group/ober-resources/users/smozaffari/Prediction/data/test/PrediXcan/Hutterite/annotate_alleles.pl second_newbim
-
+perl /group/ober-resources/users/smozaffari/Prediction/data/test/PrediXcan/Hutterite/poorman_impute.pl 
 

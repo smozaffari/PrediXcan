@@ -1,16 +1,18 @@
 print("Reading bim")
 bim <- read.table("/group/ober-resources/users/smozaffari/Prediction/data/test/SNPinfo.bim")
 print("Reading IDxSNP")
-IDxSNP2 <- read.table("/group/ober-resources/users/smozaffari/Prediction/data/test/qcfiles_rsids_hapmapSNPs.ped")
-print ("getting IDs")
-ID <- IDxSNP2[,2]
-print ("removing first 6 columns\n")
-IDxSNP <- IDxSNP2[,-c(1:6)]
+#IDxSNP2 <- read.table("/group/ober-resources/users/smozaffari/Prediction/data/test/qcfiles_rsids_hapmapSNPs.ped")
+IDxSNP <- read.table("/group/ober-resources/users/smozaffari/Prediction/data/test/IDxSNP.ped")
+#print ("getting IDs")
+#ID <- IDxSNP2[,2]
+#print ("removing first 6 columns\n")
+#IDxSNP <- IDxSNP2[,-c(1:6)]
 print ("tranposing matrix")
 SNPxID <- t(IDxSNP)
 print ("reading SNP list")
 SNPlist <- read.table("/group/ober-resources/users/smozaffari/Prediction/data/test/SNPlist_hapmap_rsids.txt")
-#IDs already included in ped file 
+print ("getting IDs")
+ID <- read.table("/group/ober-resources/users/smozaffari/Prediction/data/test/HUTTsamples.txt")
 
 print("Merging files")
 colnames(SNPxID) <- ID

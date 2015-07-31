@@ -11,4 +11,4 @@ export TMPDIR=$WORKDIR
 cd $PBS_O_WORKDIR
 export TEMP=$WORKDIR
 
-perl /group/ober-resources/users/smozaffari/Prediction/data/test/PrediXcan/Hutterite/annotate_rsids.pl hapmap_notinHutterites
+perl /group/ober-resources/users/smozaffari/Prediction/data/test/PrediXcan/Hutterite/annotate_rsids.pl different_hapmapSnps_list_rsids

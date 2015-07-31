@@ -13,6 +13,7 @@ my %maj;
 my %min;
 my %chr;
 
+open (OUT, ">output_ann_allele.txt");
 open (ANN, "/group/ober-resources/users/cigartua/Hutterite_annotation/all_imputed_cgi.annovar_plink_annotations.hg19_multianno.txt") || die "nope: $!";
 my $f = <ANN>;
 while (my $line = <ANN>) {
@@ -22,6 +23,15 @@ while (my $line = <ANN>) {
     $maf{$fakers} = $line[48];
     $maj{$fakers} = $line[47];
     $min{$fakers} = $line[46];
+    if ($min{$fakers} =~ /[0-9]/) {
+	if ($maj{$fakers} = $line[4]) {
+	    $min{$fakers} = $line[3];
+	} elsif ($maj{$fakers} = $line[3]) {
+	    $min{$fakers} = $line[4];
+	}
+    } else {
+	print OUT ("unsure: $fakers, $rs{$fakers}\n");
+    }
     $line[0]=~ s/\D//g;
     $chr{$fakers} = $line[0];
 }

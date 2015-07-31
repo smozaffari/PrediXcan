@@ -22,6 +22,15 @@ while (my $line = <ANN>) {
     $maf{$rs} = $line[48];
     $maj{$rs} = $line[47];
     $min{$rs} = $line[46];
+    if ($min{$rs} =~ /[0-9]/) {
+        if ($maj{$rs} = $line[4]) {
+            $min{$rs} = $line[3];
+        } elsif ($maj{$rs} = $line[3]) {
+            $min{$rs} = $line[4];
+        }
+#    } else {
+#        print OUT ("unsure: $fakers, $rs{$fakers}\n");
+    }
     $line[0] =~ s/\D//g;
     $chr{$rs} = $line[0];
 }
@@ -33,8 +42,10 @@ while (my $line = <FIL>) {
     chomp $line;
     my @line = split "\t", $line;
     my $rs = $line[1];
+#usually line[1];
     if ($fakers{$rs}) {
-	print NEW (join "\t",$line[0],$rs, $line[2], $line[3], $maj{$rs}, $min{$rs}, $maf{$rs});
+#line[0] in output
+	print NEW (join "\t",$line[0], $rs, $line[2], $line[3], $maj{$rs}, $min{$rs}, $maf{$rs});
 	print NEW ("\n");
     } else {
 	print PRIV (join "\t", $line[0], $rs,  $maf{$rs});
