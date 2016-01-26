@@ -15,5 +15,5 @@ module load R
 module load python
 
 
-python /group/ober-resources/users/smozaffari/Prediction/data/test/PrediXcan/Software/predict_gene_expression.py --dosages dosagefiles --dosages_prefix HUTT_chr --weights /group/ober-resources/users/smozaffari/Prediction/data/test/Lung_0.5.db  --output GTEx_Lung_Hutterites
+python /group/ober-resources/users/smozaffari/Prediction/data/test/PrediXcan/Software/predict_gene_expression.py --dosages dosagefiles --dosages_prefix HUTT_chr --weights /group/ober-resources/users/smozaffari/Prediction/data/test/Spleen_0.5.db  --output GTEx_Spleen_Hutterites
 

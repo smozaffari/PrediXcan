@@ -14,7 +14,8 @@ open (PED, "/group/ober-resources/users/smozaffari/Prediction/data/test/recode_a
 #open (PED, "/group/ober-resources/users/smozaffari/Prediction/data/test/ped_test") || die "nope: $!";   #test file
 
 my $first = <PED>; #skip first line;
-open (NEW, ">commongenotype") || die "nope: $!";
+#open (NEW, ">cgtest") || die "nope: $!";
+open (NEW, ">commongenotype2") || die "nope: $!";
 while (my $line = <PED>) {
     my @line = split " ", $line;
     my $count2 = 0;
@@ -52,34 +53,44 @@ my %most;
 
 print NEW ("SNP\tmostcommon\n");
 foreach my $snp (@snps) {
-    if ($zero{$snp}) {
-	if ($one{$snp}) {
-	    if ($zero{$snp} >= $one{$snp}) {
-		$most{$snp} ="0";
-		if ($zero{$snp} >= $two{$snp}) {
-		    $most{$snp} = "0";
-		} elsif ($two{$snp} >= $zero{$snp}){
-		    $most{$snp} = "2";
-		} 
-	    }
-	} elsif ($two{$snp}) {
-	    if ($zero{$snp} >= $two{$snp} ) {
-		$most{$snp} = "0";
-	    } else {
-		$most{$snp} = "2";
-	    }
-	}
-    } elsif ($one{$snp}) {
-	if ($two{$snp}) {
-	    if ($one{$snp} > $two{$snp}) {
+    if ($zero{$snp}) {       #if 0 exists
+	if ($one{$snp}) {    #if 1 exists
+	    if ($zero{$snp} >= $one{$snp}) { #if 0>1 give it to 0
+		$most{$snp} = "0";             
+	    } else {                         #if not it is 1
 		$most{$snp} = "1";
-	    } else {
-		$most{$snp} = "2";
+	    }
+	    if ($two{$snp}) {  #if 2 exists
+		if ($zero{$snp} >= $two{$snp}) {  #if 0>2 it is 0
+		    $most{$snp} = "0";
+		} elsif ($two{$snp} >= $zero{$snp}){   #if 2 >0 it is 2
+		    $most{$snp} = "2";
+		} elsif ($one{$snp} >= $two{$snp}) {   #if 1>2 it is 1
+		    $most{$snp} = "1";
+		} elsif ($two{$snp} >= $one{$snp}) {  #if 2>1 it is 2
+		    $most{$snp} = "2";
+		}
+	    }
+	} elsif ($two{$snp}) {  # if 1 doesn't exist and 2 does
+	    if ($zero{$snp} >= $two{$snp} ) { #if 0>2 then it is 0
+		$most{$snp} = "0";
+	    } elsif ($zero{$snp} < $two{$snp}) { #if 0<2 then it is 2
+		$most{$snp} = "2"; 
 	    }
 	} else {
+	    $most{$snp} = "0";
+	}
+    } elsif ($one{$snp}) { #if 0 doesn't exist but 1 does
+	if ($two{$snp}) {  #if 2 also exists
+	    if ($one{$snp} >= $two{$snp}) { #if 1 > 2 it is 1
+		$most{$snp} = "1";
+	    } elsif ($one{$snp} < $two{$snp}) { #if 1 < 2 then it is 2
+		$most{$snp} = "2";
+	    }
+	} else { #if 0 and 2 doesn't exist then it is 1
 	    $most{$snp} = "1";
 	}
-    } elsif ($two{$snp}) {
+    } elsif ($two{$snp}) { #if 0 and 1 doesn't exist then it is 2
 	$most{$snp} ="2";
     }
     print NEW ("$snp\t$most{$snp}\n");
